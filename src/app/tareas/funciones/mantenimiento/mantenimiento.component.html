@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="navbar">
+    <button class="btn volver-btn" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Volver
+    </button>
+    <h2 class="centered-title">📋 Listado de Grúas en Mantenimiento</h2>
+    <button class="btn exportar-btn" (click)="exportarTabla()">
+      <i class="fas fa-file-export"></i> Exportar PDF
+    </button>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Estado</th>
+          <th>Comentario</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grua of gruas">
+          <td>{{ grua.id }}</td>
+          <td>{{ grua.marca }}</td>
+          <td>{{ grua.modelo }}</td>
+          <td>{{ grua.estado.label }}</td>
+          <td>{{ grua.comentario }}</td>
+          <td>
+            <button (click)="editGrua(grua)" class="btn editar-btn">
+              <i class="fas fa-edit"></i> Editar Estado
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="isEditing" class="form-container">
+    <div class="form-card">
+      <h3>Cambiar Estado de Grúa</h3>
+      <form [formGroup]="mantenimientoForm" (ngSubmit)="saveChanges()">
+        <label>Descripción del cambio:</label>
+        <textarea formControlName="descripcion"></textarea>
+
+        <div class="form-buttons">
+          <button type="submit" [disabled]="mantenimientoForm.invalid" class="btn guardar-btn">
+            <i class="fas fa-save"></i> Guardar
+          </button>
+          <button type="button" (click)="isEditing = false" class="btn cancelar-btn">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

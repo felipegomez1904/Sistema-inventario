@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NgxSonnerToaster } from 'ngx-sonner';
+import { AuteStateService } from './shared/aute-state.service';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgxSonnerToaster, FormsModule], 
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'autogruas';
+
+  constructor(private _auteState: AuteStateService) {}
+
+  async logOut() {
+    this._auteState.logOut();
+  }
 }
+

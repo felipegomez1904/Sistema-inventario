@@ -1,0 +1,70 @@
+<div class="form-container">
+  <div class="navbar">
+    <button class="btn volver-btn" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Volver
+    </button>
+  </div>
+  <h2 class="centered-title">📋 Registrar Nueva Grúa</h2>
+  <form [formGroup]="gruasForm" (ngSubmit)="onSubmit()">
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input type="text" id="id" formControlName="id" placeholder="Ingrese el ID" required />
+        </div>
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" id="marca" formControlName="marca" placeholder="Ingrese la marca" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" id="modelo" formControlName="modelo" placeholder="Ingrese el modelo" required />
+        </div>
+        <div class="form-group">
+          <label for="placa">Placa</label>
+          <input type="text" id="placa" formControlName="placa" placeholder="Ingrese la placa" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <p-dropdown
+          formControlName="estado"
+          [options]="estado"
+          optionLabel="label"
+          placeholder="Seleccione un estado"
+          (onChange)="loadComent()">
+        </p-dropdown>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha_de_compra">Fecha de Compra</label>
+        <p-calendar formControlName="fecha_de_compra" showIcon="true"></p-calendar>
+      </div>
+
+      <div class="form-group">
+        <label for="ubicacion">Ubicación</label>
+        <input type="text" id="ubicacion" formControlName="ubicacion" placeholder="Ingrese la ubicación" required />
+      </div>
+
+      <div *ngIf="coment" class="form-group">
+        <label for="comentario">Comentario</label>
+        <textarea
+          rows="5"
+          cols="30"
+          pInputTextarea
+          formControlName="comentario">
+        </textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="gruasForm.invalid">
+          <i class="fas fa-save"></i> Registrar Grúa
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

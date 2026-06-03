@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="navbar">
+    <button class="btn volver-btn" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Volver
+    </button>
+    <h2 class="centered-title">📋 Listado de Equipos Electrónicos</h2>
+    <button class="btn exportar-btn" (click)="exportarTabla()">
+      <i class="fas fa-file-export"></i> Exportar PDF
+    </button>
+  </div>
+
+  <div class="add-button-container">
+    <button class="btn agregar-btn" (click)="newEquipo()">
+      <i class="fas fa-plus-circle"></i> Agregar Nuevo Equipo
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Marca</th>
+          <th>Comentarios</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipo of equipos">
+          <td>{{ equipo.id }}</td>
+          <td>{{ equipo.tipo.label }}</td>
+          <td>{{ equipo.marca }}</td>
+          <td>{{ equipo.comentarios }}</td>
+          <td>
+            <button class="btn editar-btn" (click)="openForm(equipo)">
+              <i class="fas fa-edit"></i> Editar
+            </button>
+            <button class="btn eliminar-btn" (click)="deleteEquipo(equipo.ids)">
+              <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="isEditing" class="form-container">
+    <div class="form-card">
+      <h3>{{ isEditing ? 'Editar Equipo' : 'Agregar Equipo' }}</h3>
+      <form [formGroup]="equiposForm" (ngSubmit)="saveEquipo()">
+        <div *ngIf="isEditing">
+          <label>ID:</label>
+          <input formControlName="id" type="text" readonly />
+        </div>
+
+        <label>Tipo:</label>
+        <p-dropdown formControlName="tipo" [options]="tipos" optionLabel="label" placeholder="Seleccione un tipo"></p-dropdown>
+
+        <label>Marca:</label>
+        <input formControlName="marca" type="text" />
+
+        <label>Comentarios:</label>
+        <textarea formControlName="comentarios"></textarea>
+
+        <div class="form-buttons">
+          <button type="submit" [disabled]="equiposForm.invalid" class="btn guardar-btn">
+            <i class="fas fa-save"></i> Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

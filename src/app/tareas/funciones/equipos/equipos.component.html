@@ -1,0 +1,38 @@
+<div class="form-container">
+    <div class="navbar">
+      <button class="btn volver-btn" (click)="goBack()">Volver</button>
+    </div>
+    <h2>Registrar Nuevo Equipo Electrónico</h2>
+    <form [formGroup]="equiposForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" formControlName="id" placeholder="Ingrese el ID" required />
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo</label>
+        <p-dropdown
+          formControlName="tipo"
+          [options]="tipo"
+          optionLabel="label"
+          placeholder="Seleccione un tipo"
+        ></p-dropdown>
+      </div>
+      <div class="form-group">
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" formControlName="marca" placeholder="Ingrese la marca" required />
+      </div>
+      <div class="form-group">
+        <label for="comentarios">Comentarios</label>
+        <textarea
+          id="comentarios"
+          formControlName="comentarios"
+          placeholder="Ingrese comentarios"
+          rows="4"
+        ></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="equiposForm.invalid">Registrar Equipo</button>
+      </div>
+    </form>
+  </div>
+  

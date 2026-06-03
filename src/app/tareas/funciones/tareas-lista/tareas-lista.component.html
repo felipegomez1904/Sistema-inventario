@@ -1,0 +1,36 @@
+<div class="dashboard">
+  <!-- Barra lateral izquierda -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="/assets/logo.png" alt="Logo Empresa" />
+    </div>
+    <nav class="menu">
+      <button (click)="navigateTo('/list-grua')" routerLinkActive="active">
+        <i class="fas fa-truck-moving"></i> Grúas
+      </button>
+      <button (click)="navigateTo('/list-equipo')" routerLinkActive="active">
+        <i class="fas fa-cogs"></i> Equipos Electrónicos
+      </button>
+      <button (click)="navigateTo('/mantenimiento')" routerLinkActive="active">
+        <i class="fas fa-tools"></i> Mantenimiento
+      </button>
+      <button (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
+    </nav>
+  </aside>
+  
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <header>
+        <h1>AUTOGRUAS OSMAR GROUP</h1>
+        <p>Sistema de inventario de grúas y equipos electrónicos</p>
+        <br>
+        <h2> Es una empresa familiar  que nace hace 16 años en el municipio de Zipaquirá con un solo vehículo que se dedica al transporte de carga liviana y pesada, al transcurrir de los años se ha consolidado por su servicio y puntualidad lo que ha generado un crecimiento exponencial y aumento de su flota de vehiculos prestando servicios a nivel nacional</h2>
+        <h2>El proposito de la compañia es prestar un exelente servicio con personal idoneo responsable y con vocación de servicio</h2>
+      </header>
+
+    </div>
+  </div>
+</div>
